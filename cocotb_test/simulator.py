@@ -440,7 +440,7 @@ class Questa(Simulator):
                 EXTRA_ARGS=" ".join(as_tcl_value(v) for v in self.compile_args),
                 FORCE= "" if self.force_compile else "-incr",
             )
-            cmd.append(["vsim"] + ["-c"] + ["-do"] + [do_script])
+            cmd.append(["vsim"] + ["-c"] + ["-64"] + ["-do"] + [do_script])
 
         if not self.compile_only:
             if self.toplevel_lang == "vhdl":
@@ -476,7 +476,7 @@ class Questa(Simulator):
             if not self.gui:
                 do_script += "run -all; quit"
 
-            cmd.append(["vsim"] + (["-gui"] if self.gui else ["-c"]) + ["-do"] + [do_script])
+            cmd.append(["vsim"] + (["-gui"] if self.gui else ["-c"] + ["-64"]) + ["-do"] + [do_script])
 
         return cmd
 
